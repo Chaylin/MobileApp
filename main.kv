@@ -1,0 +1,203 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+
+<MainLayout>:
+    MDBoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        md_bg_color: app.theme_cls.primary_color
+
+        MDToolbar:
+            id: tool_main
+            title: "Tribal Wars Bot"
+            # left_action_items: [['cog', lambda x: app.menu.open()]]
+            right_action_items: [['dots-vertical']]
+
+        MDBottomNavigation:
+
+            MDBottomNavigationItem:
+                id: screen_acc
+                name: "screen_acc"
+                text: "Accounts"
+                icon: 'account'
+                on_tab_press: app.press_acc()
+
+            MDBottomNavigationItem:
+                id: screen_vil
+                name: "screen_vil"
+                text: "Villages"
+                icon: 'home'
+                on_tab_press: app.press_vil()
+
+            MDBottomNavigationItem:
+                id: screen_attack
+                name: "screen_attack"
+                text: "Attack Manager"
+                icon: 'sword-cross'
+                on_tab_press: app.press_attack()
+
+
+<AccLayout>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        MDToolbar:
+            id: tool_acc
+            #left_action_items: [['cog', lambda x: app.menu.open()]]
+            elevation: 8
+
+        MDGridLayout:
+            cols: 4
+            padding: 10
+            MDLabel:
+                text: "Bauen"
+
+            MDCheckbox:
+                id: check_build
+            MDLabel:
+                text: "Raubzug"
+
+            MDCheckbox:
+                id: check_gather
+            MDLabel:
+                text: "Farmen"
+
+            MDCheckbox:
+                id: check_farm
+            MDLabel:
+                text: "Rekrutieren"
+
+            MDCheckbox:
+                id: check_recruit
+
+        MDGridLayout:
+            cols: 2
+            padding: 10
+            MDLabel:
+                text: f"{str(slider_apm.value)} Aktionen / min"
+            Slider:
+                id: slider_apm
+                min: 1
+                max: 150
+                step: 1
+                orientation: "horizontal"
+                cursor_image: 'images/clock.png'
+            MDLabel:
+                text: f"{str(slider_sleep.value)} sek Pause"
+
+            Slider:
+                id: slider_sleep
+                min: 1
+                max: 150
+                step: 1
+                orientation: "horizontal"
+                cursor_image: 'images/clock.png'
+
+            MDLabel:
+                text: f"{str(slider_farm.value)} min Zwangsabstand"
+
+            Slider:
+                id: slider_farm
+                min: 1
+                max: 60
+                step: 1
+                orientation: "horizontal"
+                cursor_image: 'images/light.png'
+            MDLabel:
+                text: f"{str(slider_scout.value)} min Zwangsabstand"
+            Slider:
+                id: slider_scout
+                min: 1
+                max: 1000
+                step: 1
+                orientation: "horizontal"
+                cursor_image: 'images/spy.png'
+            MDLabel:
+                text: f"{str(slider_ram.value)} min Zwangsabstand"
+            Slider:
+                id: slider_ram
+                min: 1
+                max: 1000
+                step: 1
+                orientation: "horizontal"
+                cursor_image: 'images/ram.png'
+
+        MDBottomNavigation:
+            size_hint_y: 0.2
+            MDBottomNavigationItem:
+                text: "Cancel"
+                icon: 'cancel'
+                on_tab_press:
+                    root.manager.current = "main"
+                    root.manager.transition.direction = "right"
+
+            MDBottomNavigationItem:
+                text: "Save"
+                icon: 'content-save'
+                on_tab_press:
+                    app.save_acc_data()
+                    root.manager.current = "main"
+                    root.manager.transition.direction = "right"
+
+
+
+
+
+
+
+<VilLayout>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        MDToolbar:
+            id: tool_vil
+            left_action_items: [['cog', lambda x: app.menu.open()]]
+            elevation: 8
+        GridLayout:
+            cols: 4
+            padding: 10
+
+            Label:
+                text: "Bauen"
+            CheckBox:
+                id: check_build
+            Label:
+                text: "Raubzug"
+            CheckBox:
+                id: check_gather
+            Label:
+                text: "Farmen"
+            CheckBox:
+                id: check_farm
+            Label:
+                text: "Rekrutieren"
+            CheckBox:
+                id: check_recruit
+            Label:
+                text: "Wall rammen"
+            CheckBox:
+                id: check_crush_wall
+            Label:
+                text: "Gebäude katten"
+            CheckBox:
+                id: check_crush_building
+
+        MDBottomNavigation:
+            size_hint_y: 0.2
+            MDBottomNavigationItem:
+                text: "Cancel"
+                icon: 'cancel'
+                on_tab_press:
+                    root.manager.current = "main"
+                    root.manager.transition.direction = "right"
+
+            MDBottomNavigationItem:
+                text: "Save"
+                icon: 'content-save'
+                on_tab_press:
+                    app.save_vil_data()
+                    root.manager.current = "main"
+                    root.manager.transition.direction = "right"
+
+
+
