@@ -10,8 +10,8 @@
         MDToolbar:
             id: tool_main
             title: "Tribal Wars Bot"
-            # left_action_items: [['cog', lambda x: app.menu.open()]]
-            right_action_items: [['dots-vertical']]
+            #left_action_items: [['cog', lambda x: app.menu.open()]]
+            #right_action_items: [['dots-vertical']]
 
         MDBottomNavigation:
 
@@ -43,7 +43,7 @@
         size: root.width, root.height
         MDToolbar:
             id: tool_acc
-            #left_action_items: [['cog', lambda x: app.menu.open()]]
+            left_action_items: [['cog', lambda x: app.menu.open()]]
             elevation: 8
 
         MDGridLayout:
@@ -199,5 +199,222 @@
                     root.manager.current = "main"
                     root.manager.transition.direction = "right"
 
+<GatherLayout>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
 
+        MDToolbar:
+            id: tool_gather
+
+        GridLayout:
+            cols: 4     # image |  input  |  label   |   input
+            padding: 10
+
+            # Spear
+            Image:
+                source: 'images/spear.png'
+            CheckBox:
+                id: check_gather_spear
+            Label:
+                text: 'Zurückhalten:'
+            TextInput:
+                id: input_gather_spear
+            # Sword
+            Image:
+                source: 'images/sword.png'
+            CheckBox:
+                id: check_gather_sword
+            Label:
+                text: 'Zurückhalten:'
+            TextInput:
+                id: input_gather_sword
+            # Axe
+            Image:
+                source: 'images/axe.png'
+            CheckBox:
+                id: check_gather_axe
+            Label:
+                text: 'Zurückhalten:'
+            TextInput:
+                id: input_gather_axe
+            # Archer
+            Image:
+                source: 'images/archer.png'
+            CheckBox:
+                id: check_gather_archer
+            Label:
+                text: 'Zurückhalten:'
+            TextInput:
+                id: input_gather_archer
+            # Light
+            Image:
+                source: 'images/light.png'
+            CheckBox:
+                id: check_gather_light
+            Label:
+                text: 'Zurückhalten:'
+            TextInput:
+                id: input_gather_light
+            # Marcher
+            Image:
+                source: 'images/marcher.png'
+            CheckBox:
+                id: check_gather_marcher
+            Label:
+                text: 'Zurückhalten:'
+            TextInput:
+                id: input_gather_marcher
+            # Heavy
+            Image:
+                source: 'images/heavy.png'
+            CheckBox:
+                id: check_gather_heavy
+            Label:
+                text: 'Zurückhalten:'
+            TextInput:
+                id: input_gather_heavy
+
+
+
+        MDBottomNavigation:
+            size_hint_y: 0.2
+            MDBottomNavigationItem:
+                text: "Cancel"
+                icon: 'cancel'
+                on_tab_press:
+                    root.manager.current = "villages"
+                    root.manager.transition.direction = "down"
+
+            MDBottomNavigationItem:
+                text: "Save"
+                icon: 'content-save'
+                on_tab_press:
+                    app.save_gather_data()
+                    root.manager.current = "villages"
+                    root.manager.transition.direction = "down"
+
+<FarmAssistLayout>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        MDToolbar:
+            id: tool_fa
+
+        GridLayout:
+            cols: 2
+            padding: 10
+            #row_default_height: 50
+            pos_hint: {'top': 0.9}
+            size_hint: None, None
+
+            Label:
+                text: 'Vorlage A'
+                #row_default_height: 50
+
+                pos_hint: {'center_x': 0.1, 'top': 0.9}
+                size_hint: None, None
+
+            Label:
+                text: 'Vorlage B'
+                #row_default_height: 50
+
+                pos_hint: {'center_x': 0.6, 'top': 0.9}
+                size_hint: None, None
+
+        GridLayout:
+            cols: 4     # image |  input  |  image   |   input
+            padding: 10
+
+            # Spear
+            Image:
+                source: 'images/spear.png'
+            TextInput:
+                id: input_spear_a
+            Image:
+                source: 'images/spear.png'
+            TextInput:
+                id: input_spear_b
+            # Sword
+            Image:
+                source: 'images/sword.png'
+            TextInput:
+                id: input_sword_a
+            Image:
+                source: 'images/sword.png'
+            TextInput:
+                id: input_sword_b
+            # Axe
+            Image:
+                source: 'images/axe.png'
+            TextInput:
+                id: input_axe_a
+            Image:
+                source: 'images/axe.png'
+            TextInput:
+                id: input_axe_b
+            # Archer
+            Image:
+                source: 'images/archer.png'
+            TextInput:
+                id: input_archer_a
+            Image:
+                source: 'images/archer.png'
+            TextInput:
+                id: input_archer_b
+            # light
+            Image:
+                source: 'images/light.png'
+            TextInput:
+                id: input_light_a
+            Image:
+                source: 'images/light.png'
+            TextInput:
+                id: input_light_b
+            # spy
+            Image:
+                source: 'images/spy.png'
+            TextInput:
+                id: input_spy_a
+            Image:
+                source: 'images/spy.png'
+            TextInput:
+                id: input_spy_b
+            # marcher
+            Image:
+                source: 'images/marcher.png'
+            TextInput:
+                id: input_marcher_a
+            Image:
+                source: 'images/marcher.png'
+            TextInput:
+                id: input_marcher_b
+            # heavy
+            Image:
+                source: 'images/heavy.png'
+            TextInput:
+                id: input_heavy_a
+            Image:
+                source: 'images/heavy.png'
+            TextInput:
+                id: input_heavy_b
+
+
+        MDBottomNavigation:
+            size_hint_y: 0.2
+            MDBottomNavigationItem:
+                text: "Cancel"
+                icon: 'cancel'
+                on_tab_press:
+                    root.manager.current = "accounts"
+                    root.manager.transition.direction = "down"
+
+            MDBottomNavigationItem:
+                text: "Save"
+                icon: 'content-save'
+                on_tab_press:
+                    app.save_farmassist_data()
+                    root.manager.current = "accounts"
+                    root.manager.transition.direction = "down"
 
